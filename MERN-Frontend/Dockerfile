@@ -1,8 +1,11 @@
 # use the base from docker hub
-FROM node:20-alpine
+FROM node:21.6.2
 
 # set the working directory
 WORKDIR /app
+
+# copy the package.json files
+COPY package.json ./
 
 # copy the rest of the application files
 COPY ./ ./

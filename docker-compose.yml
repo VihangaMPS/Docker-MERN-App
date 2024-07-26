@@ -1,0 +1,37 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo_container
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
+  server:
+    build: ./MERN-Backend
+    container_name: server_container
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./MERN-Backend:/app
+      - /MERN-Backend/node_modules
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/DockerHub-MERN-App
+
+  client:
+    build: ./MERN-Frontend
+    container_name: client_container
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./MERN-Frontend:/app
+      - /MERN-Frontend/node_modules
+
+volumes:
+  mongo_data:

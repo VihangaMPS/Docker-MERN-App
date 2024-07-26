@@ -1,16 +1,2 @@
-**/node_modules/
-**/dist
-
-*.env
-
-#Ignore logs directory
-logs/
-
-#Ignore the git and cache folders
-.git
-.gitignore
-.cache
-
-.vscode
-
-README.md
+node_modules
+package-lock.json
